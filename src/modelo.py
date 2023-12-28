@@ -1,4 +1,3 @@
-import pandas as pd
 import data
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
@@ -12,7 +11,7 @@ def modelo_predictivo_regresion_lineal():
     X = df_subset.drop('Accident_Severity', axis=1)
     y = df_subset['Accident_Severity']
 
-    # Dividir el conjunto de datos en conjuntos de entrenamiento y prueba
+    #Dividimos los datos en datos de entrenamiento y datos de prueba
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
     # Normalizar las características

@@ -1,9 +1,13 @@
 import pandas as pd
 import numpy as np
 
-ruta_local = 'C:/Orianna/CEU San Pablo/5Semestre5/IA/ModeloAprendizajePractica3IA/RoadSafetyAccidents.csv'
+# Tratamiento de datos: 
 
-df = pd.read_csv(ruta_local)
+ruta_local = 'C:/Orianna/CEU San Pablo/5Semestre5/IA/ModeloAprendizajePractica3IA/RoadSafetyAccidents.csv'
+dtype_dict = {'Columna31': str}
+df = pd.read_csv(ruta_local, dtype=dtype_dict, low_memory=False)
+
+# Funciones para limpiar el dataset 
 
 def df_original():
     columnas_originales = []
@@ -11,8 +15,9 @@ def df_original():
         columnas_originales.append(i)
     
     tamaño = df.shape
-    print(f'El set de datos original contiene {tamaño[1]} columnas y {tamaño[0]} filas')
-    return(f'Las columnas originales son: {columnas_originales}')
+    #print(f'El set de datos original contiene {tamaño[1]} columnas y {tamaño[0]} filas')
+    #print(f'Las columnas originales son: {columnas_originales}')
+    return df  
 
 def df_limpio():
     df_limpio = df.drop(['Location_Easting_OSGR', 'Time', 'Location_Northing_OSGR', 'Longitude', 'Latitude',
@@ -25,16 +30,13 @@ def df_limpio():
 
     df_limpio = df_limpio.dropna() #Eliminamos las filas con valores nulos
     tamaño = df_limpio.shape
-    print(f'El set de datos limpio contiene {tamaño[1]} columnas y {tamaño[0]} filas')
-    print(f'Las columnas limpias son: {df_limpio.columns}')
+    # print(f'El set de datos limpio contiene {tamaño[1]} columnas y {tamaño[0]} filas')
+    # print(f'Las columnas limpias son: {df_limpio.columns}')
     return df_limpio
-
 
 def df_entrenamiento(df_limpio):
     df_limpio_mitad = df_limpio.sample(frac=0.5, random_state=42) # Selecciona aleatoriamente la mitad de las filas
     tamaño = df_limpio_mitad.shape
-    print(f'El set de datos limpio y reducido contiene {tamaño[1]} columnas y {tamaño[0]} filas')
-    print(f'Las columnas limpias y reducidas son: {df_limpio_mitad.columns}')
+    # print(f'El set de datos limpio y reducido contiene {tamaño[1]} columnas y {tamaño[0]} filas')
+    # print(f'Las columnas limpias y reducidas son: {df_limpio_mitad.columns}')
     return df_limpio_mitad
-
-
