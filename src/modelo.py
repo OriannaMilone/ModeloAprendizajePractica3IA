@@ -40,3 +40,4 @@ def modelo_predictivo_regresion_lineal():
     print('\nReporte de Clasificación:')
     print(classification_rep)
     
+    return 'Para consultar el paso a paso del modelo, consultar el Readme.md ...'
