@@ -4,35 +4,48 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+#from sklearn.tree import DecisionTreeClassifier
+#from sklearn.ensemble import RandomForestClassifier
+
 
 #def modelo_predictivo_regresion_lineal(): 
 df_subset = data.df_entrenamiento(data.df_limpio())
 
-        # Separar las características (X) y la variable objetivo (Accident_Severity: y)
+# Separar las características (X) y la variable objetivo (Accident_Severity: y)
 X = df_subset.drop('Accident_Severity', axis=1)
 y = df_subset['Accident_Severity']
 
-        #Dividimos los datos en datos de entrenamiento y datos de prueba
+#Dividimos los datos en datos de entrenamiento y datos de prueba
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-        # Normalizar las características
+# Normalizar las características
 scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
-        #Modelo de Regresión Logística
+#Modelo de Regresión Logística
 modelo_logistico = LogisticRegression(random_state=42)
 
-        #Entrenando el modelo
+#Modelo de arbol de Decisión
+#modelo_arbol = DecisionTreeClassifier(random_state=42)
+
+#Modelo de RandomForest 
+#modelo_rf = RandomForestClassifier(random_state=42)
+
+#Entrenando el modelo
 modelo_logistico.fit(X_train, y_train)
 
+#modelo_arbol.fit(X_train, y_train)
 
+#modelo_rf.fit(X_train, y_train)
 
 def testing_accuracy():
-        #Realizar predicciones en el conjunto de prueba
+    #Realizar predicciones en el conjunto de prueba
     y_pred = modelo_logistico.predict(X_test)
+    #y_pred = modelo_arbol.predict(X_test)
+    #y_pred = modelo_rf.predict(X_test)
 
-        #Evaluar el rendimiento del modelo
+    #Evaluar el rendimiento del modelo
     accuracy = accuracy_score(y_test, y_pred)
     conf_matrix = confusion_matrix(y_test, y_pred)
     classification_rep = classification_report(y_test, y_pred)
@@ -59,6 +72,9 @@ def realizar_prediccion(numeroVehiculos, numeroBajas, diaSemana, limiteVelocidad
     nuevos_datos_normalizados = scaler.transform(nuevos_datos)
     
     prediccion = modelo_logistico.predict(nuevos_datos_normalizados)
+    #prediccion = modelo_arbol.predict(nuevos_datos_normalizados)
+    #prediccion = modelo_rf.predict(nuevos_datos_normalizados)
+    
     
     print("Predicción de la severidad del accidente para los nuevos datos:", prediccion)
     return '--------------------------------------------------------------------------'
