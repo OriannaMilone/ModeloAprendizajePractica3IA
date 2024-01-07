@@ -26,12 +26,12 @@ def df_limpio():
                     '2nd_Road_Class', '2nd_Road_Number', 'Pedestrian_Crossing-Human_Control',
                     'Pedestrian_Crossing-Physical_Facilities', 'Special_Conditions_at_Site',
                     'Carriageway_Hazards', 'Did_Police_Officer_Attend_Scene_of_Accident',
-                    'LSOA_of_Accident_Location', 'Police_Force' ,'Accident_Index'], axis=1)
+                    'LSOA_of_Accident_Location', 'Police_Force' ,'Accident_Index', 'Road_Type'], axis=1)
 
     df_limpio = df_limpio.dropna() #Eliminamos las filas con valores nulos
     tamaño = df_limpio.shape
     # print(f'El set de datos limpio contiene {tamaño[1]} columnas y {tamaño[0]} filas')
-    # print(f'Las columnas limpias son: {df_limpio.columns}')
+    #print(f'Las columnas limpias son: {df_limpio.columns}')
     return df_limpio
 
 def df_entrenamiento(df_limpio):

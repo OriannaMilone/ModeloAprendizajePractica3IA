@@ -27,3 +27,5 @@ La regresión logística es una elección convincente para abordar el problema d
 
 ## Resultados
 - Se obtiene una precisión del 83% con los datos de entrenamiento
+
+## Intrucciones para ejecutar 
